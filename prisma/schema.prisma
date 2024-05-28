@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model RequestedAccount {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id                       String                     @id @default(uuid())
+  name                     String
+  email                    String                     @unique
+  password                 String
+  role                     Role                       @default(USER)
+  status                   Status                     @default(ACTIVE)
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  UserWhoFavoritedIntranet UserWhoFavoritedIntranet[]
+}
+
+model Category {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  description String?
+  intranets   Intranet[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Intranet {
+  id                       String                     @id @default(uuid())
+  name                     String
+  description              String?
+  link                     String                     @unique
+  categoryId               String                     @map("category_id")
+  category                 Category                   @relation(fields: [categoryId], references: [id])
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  UserWhoFavoritedIntranet UserWhoFavoritedIntranet[]
+}
+
+model UserWhoFavoritedIntranet {
+  userId     String   @map("user_id")
+  user       User     @relation(fields: [userId], references: [id])
+  intranetId String   @map("intranet_id")
+  intranet   Intranet @relation(fields: [intranetId], references: [id])
+
+  @@id([userId, intranetId])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
