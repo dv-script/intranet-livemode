@@ -20,9 +20,11 @@ export function FavoriteIntranet({
     (fav) => fav.intranetId === intranet.id
   );
   const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
+  const [pending, setPending] = useState(false);
 
   const handleFavoriteClick = async () => {
     setIsFavoriteState((prev) => !prev);
+    setPending(true);
     try {
       await toggleFavoriteIntranet(intranet.id);
       toast.success(
@@ -30,12 +32,14 @@ export function FavoriteIntranet({
           ? `${intranet.name} foi removido dos favoritos.`
           : `${intranet.name} foi favoritado.`
       );
+      setPending(false);
     } catch (error) {
       if (!isFavoriteState) {
         toast.error(`Erro ao favoritar ${intranet.name}.`);
       } else {
         toast.error(`Erro ao desfavoritar ${intranet.name}.`);
       }
+      setPending(false);
     }
   };
 
@@ -45,6 +49,7 @@ export function FavoriteIntranet({
       variant="ghost"
       className={isFavoriteState ? "bg-red-500 hover:bg-red-700" : ""}
       onClick={handleFavoriteClick}
+      disabled={pending}
     >
       <HeartIcon size={16} />
     </Button>
