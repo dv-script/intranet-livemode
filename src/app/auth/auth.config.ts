@@ -5,8 +5,25 @@ export const authConfig = {
   providers: [],
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
+      const userLoggedIn = !!auth?.user;
+      const isHomeRoute = nextUrl.pathname === "/";
+      const isAuthRoutes = nextUrl.pathname.startsWith("/auth");
+      const authOrHomeRoutes = isHomeRoute || isAuthRoutes;
+
       const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
       const isAdmin = auth?.user?.role === "ADMIN";
+
+      if (userLoggedIn && isHomeRoute) {
+        return Response.redirect(new URL("/intranet", nextUrl));
+      }
+
+      if (!userLoggedIn && !authOrHomeRoutes) {
+        return Response.redirect(new URL("/", nextUrl));
+      }
+
+      if (userLoggedIn && authOrHomeRoutes) {
+        return Response.redirect(new URL("/intranet", nextUrl));
+      }
 
       if (isAdminRoutes && !isAdmin) {
         return false;
