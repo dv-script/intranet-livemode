@@ -44,7 +44,6 @@ export async function Header() {
           alt="CazeTV Logo"
           fill
           sizes="100%"
-          priority
           quality={100}
         />
       </Link>
