@@ -18,7 +18,7 @@ export function RequestAccountForm() {
   }, [state.success, state.message]);
 
   return (
-    <form action={dispatch} className="w-1/2 mx-auto flex flex-col gap-2">
+    <form action={dispatch} className="w-fit mx-auto flex flex-col gap-2">
       <p className="text-muted-foreground text-sm">
         Ainda não possui uma conta?{" "}
         <strong className="text-white">Solicite aqui!</strong>
