@@ -64,7 +64,7 @@ export async function Header() {
           </SheetHeader>
           <div className="flex flex-col gap-2 pt-6">
             {session ? (
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center pb-4">
                 <Avatar>
                   <AvatarFallback>{session.user?.name![0]}</AvatarFallback>
                 </Avatar>
