@@ -3,7 +3,6 @@
 import { deleteIntranet } from "@/app/_actions/delete-intranet";
 import { SubmitButton } from "@/app/_components/submit-button";
 import { Prisma } from "@prisma/client";
-import { revalidatePath } from "next/cache";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "sonner";
