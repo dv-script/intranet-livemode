@@ -51,7 +51,7 @@ model UserWhoFavoritedIntranet {
   userId     String   @map("user_id")
   user       User     @relation(fields: [userId], references: [id])
   intranetId String   @map("intranet_id")
-  intranet   Intranet @relation(fields: [intranetId], references: [id])
+  intranet   Intranet @relation(fields: [intranetId], references: [id], onDelete: Cascade)
 
   @@id([userId, intranetId])
 }
