@@ -43,6 +43,7 @@ export async function Header() {
           src="/logo.png"
           alt="CazeTV Logo"
           fill
+          priority
           quality={100}
         />
       </Link>
