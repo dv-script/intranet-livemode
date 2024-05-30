@@ -39,13 +39,7 @@ export async function Header() {
   return (
     <div className="mx-auto flex items-center gap-2 justify-between p-2 max-w-screen-xl">
       <Link href="/" className="relative h-16 w-16">
-        <Image
-          src="/logo.png"
-          alt="CazeTV Logo"
-          fill
-          priority
-          quality={100}
-        />
+        <Image src="/logo.png" alt="CazeTV Logo" fill priority quality={100} />
       </Link>
       <Sheet>
         <SheetTrigger asChild>
@@ -92,27 +86,31 @@ export async function Header() {
               </>
             )}
             <div className="flex flex-col gap-2">
-              <Button
-                variant="ghost"
-                className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
-                asChild
-              >
-                <Link href="/">
-                  <HomeIcon size={16} />
-                  <span className="block">Ínicio</span>
-                </Link>
-              </Button>
-              {session?.user?.role === "ADMIN" && (
+              <SheetClose asChild>
                 <Button
-                  asChild
                   variant="ghost"
                   className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
+                  asChild
                 >
-                  <Link href="/admin">
-                    <Shield size={16} />
-                    <span className="block">Admin</span>
+                  <Link href="/">
+                    <HomeIcon size={16} />
+                    <span className="block">Ínicio</span>
                   </Link>
                 </Button>
+              </SheetClose>
+              {session?.user?.role === "ADMIN" && (
+                <SheetClose asChild>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
+                  >
+                    <Link href="/admin">
+                      <Shield size={16} />
+                      <span className="block">Admin</span>
+                    </Link>
+                  </Button>
+                </SheetClose>
               )}
               {session && (
                 <SheetClose asChild>
