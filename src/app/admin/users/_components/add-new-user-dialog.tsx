@@ -21,9 +21,7 @@ export function AddNewUserDialog() {
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenDialog}>
       <DialogTrigger asChild>
-        <Button variant="secondary" className="w-fit">
-          Adicionar novo usuário
-        </Button>
+        <Button className="w-fit">Adicionar novo usuário</Button>
       </DialogTrigger>
 
       <DialogContent>
