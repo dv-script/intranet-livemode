@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { editIntranet } from "@/app/_actions/edit-intranet";
@@ -13,7 +12,7 @@ import {
   SelectValue,
 } from "@/app/_components/ui/select";
 import { Category, Prisma } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "sonner";
 
@@ -32,21 +31,21 @@ export function EditIntranetForm({
   const [selectedCategory, setSelectedCategory] = useState<string>(
     intranet.category.name
   );
-
+  
   const handleCategoryChange = (value: string) => {
     setSelectedCategory(value);
   };
 
-  const handleCloseDialog = () => {
+  const handleCloseDialog = useCallback(() => {
     setIsOpen(false);
-  };
+  }, [setIsOpen]);
 
   useEffect(() => {
     if (state.success) {
       toast.success(state.message);
       handleCloseDialog();
     }
-  }, [state.success, handleCloseDialog]);
+  }, [state.success, state.message, handleCloseDialog]);
 
   return (
     <form action={dispatch} className="grid gap-4 py-4">
