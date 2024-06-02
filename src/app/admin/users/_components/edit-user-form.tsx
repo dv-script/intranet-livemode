@@ -107,7 +107,7 @@ export function EditUserForm({
             </SelectTrigger>
             <SelectContent>
               {roles.map((role) => (
-                <SelectItem value={role} key={role}>
+                <SelectItem className="cursor-pointer" value={role} key={role}>
                   {role}
                 </SelectItem>
               ))}
@@ -138,7 +138,7 @@ export function EditUserForm({
             </SelectTrigger>
             <SelectContent>
               {status.map((stat) => (
-                <SelectItem value={stat} key={stat}>
+                <SelectItem className="cursor-pointer" value={stat} key={stat}>
                   {stat}
                 </SelectItem>
               ))}
