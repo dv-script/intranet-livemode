@@ -45,13 +45,17 @@ export function AddNewUserForm({
     setPassword(hash);
   };
 
+  const handlePasswordChange = (value: string) => {
+    setPassword(value);
+  };
+
   const handleCloseDialog = useCallback(() => {
     setIsOpen(false);
   }, [setIsOpen]);
 
-  const handleRoleChange = useCallback((value: string) => {
+  const handleRoleChange = (value: string) => {
     setSelectedRole(value);
-  }, []);
+  };
 
   useEffect(() => {
     if (state.success) {
@@ -109,6 +113,7 @@ export function AddNewUserForm({
             <Input
               name="password"
               value={password}
+              onChange={(e) => handlePasswordChange(e.target.value)}
               placeholder="Insira a senha do usuário"
               className={state.errors?.password && "border-red-500"}
             />
@@ -142,7 +147,11 @@ export function AddNewUserForm({
             </SelectTrigger>
             <SelectContent>
               {roles.map((role) => (
-                <SelectItem value={role.name} key={role.id}>
+                <SelectItem
+                  className="cursor-pointer"
+                  value={role.name}
+                  key={role.id}
+                >
                   {role.name}
                 </SelectItem>
               ))}
