@@ -15,6 +15,7 @@ import {
   Layers2,
   LogInIcon,
   MenuIcon,
+  SettingsIcon,
   Shield,
 } from "lucide-react";
 import { Separator } from "./ui/separator";
@@ -39,7 +40,14 @@ export async function Header() {
   return (
     <div className="mx-auto flex items-center gap-2 justify-between p-2 max-w-screen-xl">
       <Link href="/" className="relative h-16 w-16">
-        <Image src="/logo.png" alt="CazeTV Logo" fill priority quality={100} sizes="100%" />
+        <Image
+          src="/logo.png"
+          alt="CazeTV Logo"
+          fill
+          priority
+          quality={100}
+          sizes="100%"
+        />
       </Link>
       <Sheet>
         <SheetTrigger asChild>
@@ -113,18 +121,32 @@ export async function Header() {
                 </SheetClose>
               )}
               {session && (
-                <SheetClose asChild>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
-                    asChild
-                  >
-                    <Link href="my-favorites-intranets">
-                      <HeartIcon size={16} />
-                      <span className="block">Intranets Favoritos</span>
-                    </Link>
-                  </Button>
-                </SheetClose>
+                <>
+                  <SheetClose asChild>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
+                      asChild
+                    >
+                      <Link href="/my-favorites-intranets">
+                        <HeartIcon size={16} />
+                        <span className="block">Intranets Favoritos</span>
+                      </Link>
+                    </Button>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
+                      asChild
+                    >
+                      <Link href="/settings">
+                        <SettingsIcon size={16} />
+                        <span className="block">Configurações</span>
+                      </Link>
+                    </Button>
+                  </SheetClose>
+                </>
               )}
             </div>
             {session && (
@@ -133,6 +155,9 @@ export async function Header() {
                   <Separator />
                 </div>
                 <div className="flex flex-col gap-2">
+                  <span className="text-sm mb-2 pl-4 font-semibold">
+                    Categorias
+                  </span>
                   {categories.map((category) => (
                     <Button
                       asChild
