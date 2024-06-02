@@ -14,7 +14,7 @@ const addNewUserSchema = z.object({
   password: z
     .string()
     .min(8, { message: "Senha precisa ter no mínimo 8 caracteres" })
-    .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[@#@!%%*]).{8,}$/, {
+    .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).*$/, {
       message:
         "A senha precisa conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um carácter especial",
     }),
