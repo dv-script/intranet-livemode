@@ -38,4 +38,4 @@ const providers = {
   ],
 };
 
-export const { signIn, auth, signOut } = NextAuth(providers);
+export const { signIn, auth, signOut, unstable_update } = NextAuth(providers);
