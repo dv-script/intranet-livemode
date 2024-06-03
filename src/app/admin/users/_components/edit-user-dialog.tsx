@@ -29,9 +29,9 @@ export function EditUserDialog({ user }: { user: Omit<User, "password"> }) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Editar intranet</DialogTitle>
+          <DialogTitle>Editar usuário</DialogTitle>
           <DialogDescription>
-            Edite as informações da intranet selecionada.
+            Edite as informações do usuário selecionada.
           </DialogDescription>
         </DialogHeader>
         <EditUserForm setIsOpen={setIsOpen} user={user} />

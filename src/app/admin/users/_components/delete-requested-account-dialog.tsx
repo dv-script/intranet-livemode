@@ -9,10 +9,14 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/app/_components/ui/dialog";
-import { User } from "@prisma/client";
-import { DeleteUserForm } from "./delete-user-form";
+import { RequestedAccount } from "@prisma/client";
+import { DeleteRequestedAccountForm } from "./delete-requested-account-form";
 
-export function DeleteUserDialog({ user }: { user: Omit<User, "password"> }) {
+export function DeleteRequestedAccountDialog({
+  requestedAccount,
+}: {
+  requestedAccount: RequestedAccount;
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -22,7 +26,7 @@ export function DeleteUserDialog({ user }: { user: Omit<User, "password"> }) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Deseja deletar {user.name}?</DialogTitle>
+          <DialogTitle>Deseja deletar {requestedAccount.email}?</DialogTitle>
           <DialogDescription>
             Ao deletar este usuário, você não poderá recuperá-lo. Tem certeza
             que deseja deletar?
@@ -32,7 +36,7 @@ export function DeleteUserDialog({ user }: { user: Omit<User, "password"> }) {
           <DialogClose asChild>
             <Button variant="outline">Cancelar</Button>
           </DialogClose>
-          <DeleteUserForm user={user} />
+          <DeleteRequestedAccountForm requestedAccount={requestedAccount} />
         </DialogFooter>
       </DialogContent>
     </Dialog>

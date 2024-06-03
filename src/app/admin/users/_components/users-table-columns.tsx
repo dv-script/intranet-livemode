@@ -93,6 +93,27 @@ export const userTableColumns: ColumnDef<Omit<User, "password">>[] = [
     },
   },
   {
+    accessorKey: "isNewUser",
+    header: ({ column }) => {
+      return (
+        <div className="flex items-center gap-1">
+          <span>Verificado</span>
+          <Button
+            variant="ghost"
+            size="icon-xs"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            <ArrowUpDown size={12} />
+          </Button>
+        </div>
+      );
+    },
+    cell: ({ row }) => {
+      const isNewUser = row.getValue("isNewUser") as boolean;
+      return <div>{isNewUser ? "À verificar" : "Verificado"}</div>;
+    },
+  },
+  {
     accessorKey: "status",
     header: ({ column }) => {
       return (

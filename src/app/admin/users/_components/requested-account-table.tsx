@@ -31,12 +31,13 @@ import {
   TableRow,
 } from "@/app/_components/ui/table";
 import { useState } from "react";
-import { User } from "@prisma/client";
+import { RequestedAccount } from "@prisma/client";
+import { requestedAccountTableColumns } from "./request-account-table-columns";
 
-export function UsersTable({
-  usersData,
+export function RequestedAccountTable({
+  requestAccountData,
 }: {
-  usersData: Omit<User, "password">[];
+  requestAccountData: RequestedAccount[];
 }) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -44,8 +45,8 @@ export function UsersTable({
   const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data: usersData,
-    columns: userTableColumns,
+    data: requestAccountData,
+    columns: requestedAccountTableColumns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -66,8 +67,8 @@ export function UsersTable({
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Buscar por nome..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          placeholder="Buscar por email..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
@@ -94,20 +95,10 @@ export function UsersTable({
                     }
                     onSelect={(event) => event.preventDefault()}
                   >
-                    {column.id === "name"
-                      ? "Nome"
-                      : column.id === "email"
+                    {column.id === "email"
                       ? "E-mail"
-                      : column.id === "role"
-                      ? "Cargo"
-                      : column.id === "isNewUser"
-                      ? "Verificado"
-                      : column.id === "status"
-                      ? "Status"
                       : column.id === "createdAt"
-                      ? "Criado em"
-                      : column.id === "updatedAt"
-                      ? "Atualizado em"
+                      ? "Solicitada em"
                       : column.id}
                   </DropdownMenuCheckboxItem>
                 );
