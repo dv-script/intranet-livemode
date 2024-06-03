@@ -23,6 +23,7 @@ import { db } from "../_lib/prisma";
 import { SignOutDialog } from "./sign-out-dialog";
 import { auth } from "../auth/providers";
 import { Avatar, AvatarFallback } from "./ui/avatar";
+import LogoImage from "@public/logo.png";
 
 export async function Header() {
   const categories = await db.category.findMany({
@@ -40,14 +41,7 @@ export async function Header() {
   return (
     <div className="mx-auto flex items-center gap-2 justify-between p-2 max-w-screen-xl">
       <Link href="/" className="relative h-16 w-16">
-        <Image
-          src="/logo.png"
-          alt="CazeTV Logo"
-          fill
-          priority
-          quality={100}
-          sizes="100%"
-        />
+        <Image src={LogoImage.src} alt="CazeTV Logo" fill sizes="100%" />
       </Link>
       <Sheet>
         <SheetTrigger asChild>
