@@ -63,7 +63,19 @@ export async function changeYourPassword(
     };
   }
 
-  const hashedPasswordFromDb = await db.user.findFirst({
+  if (currentPassword === newPassword) {
+    return {
+      errors: {
+        newPassword: [
+          "A nova senha não pode ser igual à senha atual. Por favor, tente novamente.",
+        ],
+      },
+      message: "Por favor, preencha os campos corretamente.",
+      success: false,
+    };
+  }
+
+  const hashedPasswordFromDb = await db.user.findUnique({
     where: {
       id,
     },
@@ -96,6 +108,7 @@ export async function changeYourPassword(
       },
       data: {
         password: hashedPassword,
+        isNewUser: false,
       },
     });
 
