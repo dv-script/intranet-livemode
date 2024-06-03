@@ -12,7 +12,7 @@ import { toast } from "sonner";
 export function ChangeYourPasswordForm({
   user,
 }: {
-  user: Pick<User, "name" | "email" | "id" | "role">;
+  user: Pick<User, "name" | "email" | "id" | "role" | "isNewUser">;
 }) {
   const initialState = { message: "", errors: {} };
   const [state, dispatch] = useFormState(changeYourPassword, initialState);
