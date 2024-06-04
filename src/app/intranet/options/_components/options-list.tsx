@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Button } from "@/app/_components/ui/button";
 import { Loading } from "@/app/_components/loading";
 import { IntranetItem } from "../../_components/intranet-item";
+import { AddNewIntranetDialog } from "../../_components/_add-new-intranet/add-new-intranet-dialog";
 
 export function OptionsList({
   isAdmin,
@@ -68,6 +69,7 @@ export function OptionsList({
 
   return (
     <div className="flex flex-col gap-6 px-4 py-12 max-w-screen-xl mx-auto">
+      <AddNewIntranetDialog categories={categories} />
       <h1 className="font-extrabold text-gradient text-5xl md:text-6xl">
         Resultados da busca:
       </h1>
