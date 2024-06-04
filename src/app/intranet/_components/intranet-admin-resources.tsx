@@ -5,8 +5,8 @@ import {
   PopoverContent,
 } from "@/app/_components/ui/popover";
 import { Ellipsis } from "lucide-react";
-import { DeleteIntranetDialog } from "./delete-intranet-dialog";
-import { EditIntranetDialog } from "./edit-intranet-dialog";
+import { DeleteIntranetDialog } from "./_delete-intranet/delete-intranet-dialog";
+import { EditIntranetDialog } from "./_edit-intranet/edit-intranet-dialog";
 import { Category, Prisma } from "@prisma/client";
 
 export function IntranetAdminResources({
