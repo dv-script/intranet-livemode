@@ -9,10 +9,6 @@ export const authConfig = {
       const isHomeRoute = nextUrl.pathname === "/";
       const isAuthRoutes = nextUrl.pathname.startsWith("/auth");
       const authOrHomeRoutes = isHomeRoute || isAuthRoutes;
-      const isNewUser = auth?.user?.isNewUser;
-      const changePasswordRoute = nextUrl.pathname.startsWith(
-        "/settings/change-your-password"
-      );
 
       const isAdminRoutes = nextUrl.pathname.startsWith("/admin");
       const isAdmin = auth?.user?.role === "ADMIN";
@@ -27,12 +23,6 @@ export const authConfig = {
 
       if (userLoggedIn && authOrHomeRoutes) {
         return Response.redirect(new URL("/intranet", nextUrl));
-      }
-
-      if (isNewUser && !changePasswordRoute) {
-        return Response.redirect(
-          new URL("/settings/change-your-password", nextUrl)
-        );
       }
 
       if (isAdminRoutes && !isAdmin) {
