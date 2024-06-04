@@ -122,7 +122,7 @@ export async function Header() {
                       className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
                       asChild
                     >
-                      <Link href="/my-favorites-intranets">
+                      <Link href="/my-favorite-intranets">
                         <HeartIcon size={16} />
                         <span className="block">Intranets Favoritos</span>
                       </Link>
@@ -153,17 +153,18 @@ export async function Header() {
                     Categorias
                   </span>
                   {categories.map((category) => (
-                    <Button
-                      asChild
-                      key={category.id}
-                      variant="ghost"
-                      className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
-                    >
-                      <Link href={`/category/${category.id}`}>
-                        <Layers2 />
-                        <span>{category.name}</span>
-                      </Link>
-                    </Button>
+                    <SheetClose key={category.id} asChild>
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className="w-full justify-start gap-3 items-center rounded-full text-sm font-normal"
+                      >
+                        <Link href={`/category/${category.id}`}>
+                          <Layers2 />
+                          <span>{category.name}</span>
+                        </Link>
+                      </Button>
+                    </SheetClose>
                   ))}
                 </div>
 
