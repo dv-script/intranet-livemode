@@ -1,7 +1,7 @@
-import { AddNewUserDialog } from "./_components/add-new-user-dialog";
+import { AddNewUserDialog } from "./_components/_add-new-user/add-new-user-dialog";
 import { db } from "@/app/_lib/prisma";
-import { UsersTable } from "./_components/users-table";
-import { RequestedAccountTable } from "./_components/requested-account-table";
+import { UsersTable } from "./_components/_users-table/users-table";
+import { RequestedAccountTable } from "./_components/_requested-account-table/requested-account-table";
 import { Separator } from "@/app/_components/ui/separator";
 
 export default async function Page() {
