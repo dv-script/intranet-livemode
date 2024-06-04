@@ -29,9 +29,11 @@ export function SignOutDialog() {
           <DialogTitle>Tem certeza que deseja sair?</DialogTitle>
         </DialogHeader>
         <DialogDescription>Para continuar, clique em Sair</DialogDescription>
-        <DialogFooter>
+        <DialogFooter className="flex flex-row-reverse">
           <DialogClose asChild>
-            <Button variant="ghost">Cancelar</Button>
+            <Button variant="ghost" className="w-fit">
+              Cancelar
+            </Button>
           </DialogClose>
           <DialogClose asChild>
             <SignOutForm />

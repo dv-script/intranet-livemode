@@ -5,7 +5,7 @@ import { SubmitButton } from "./submit-button";
 
 export function SignOutForm() {
   return (
-    <form action={logout}>
+    <form action={logout} className="w-fit">
       <SubmitButton type="submit">Sair</SubmitButton>
     </form>
   );
