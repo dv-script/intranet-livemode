@@ -17,7 +17,7 @@ export function IntranetItem({
   categories,
   intranetsFavorited,
 }: {
-  intranetsFavorited: Prisma.UserWhoFavoritedIntranetGetPayload<{
+  intranetsFavorited?: Prisma.UserWhoFavoritedIntranetGetPayload<{
     include: { intranet: true };
   }>[];
   categories: Category[];
@@ -57,10 +57,12 @@ export function IntranetItem({
             </Button>
           </div>
         </div>
-        <FavoriteIntranet
-          intranet={intranet}
-          intranetsFavorited={intranetsFavorited}
-        />
+        {intranetsFavorited && (
+          <FavoriteIntranet
+            intranet={intranet}
+            intranetsFavorited={intranetsFavorited}
+          />
+        )}
       </div>
       <Badge className="w-fit">{intranet.category.name}</Badge>
 

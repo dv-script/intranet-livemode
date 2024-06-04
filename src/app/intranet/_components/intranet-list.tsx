@@ -7,7 +7,7 @@ export async function IntranetList({
   isAdmin,
   intranetsFavorited,
 }: {
-  intranetsFavorited: Prisma.UserWhoFavoritedIntranetGetPayload<{
+  intranetsFavorited?: Prisma.UserWhoFavoritedIntranetGetPayload<{
     include: { intranet: true };
   }>[];
   isAdmin: boolean;
