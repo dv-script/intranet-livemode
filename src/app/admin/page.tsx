@@ -18,7 +18,7 @@ export default function Page() {
           <Link href="/admin/users">Usuários</Link>
         </Button>
         <Button asChild>
-          <Link href="/admin/intranet">Intranets</Link>
+          <Link href="/admin/categories">Categorias</Link>
         </Button>
       </div>
     </div>
