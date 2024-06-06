@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/app/_components/ui/sonner";
 import { Header } from "./_components/header";
+import Head from "next/head"; 
+import faviconImage from "@public/favicon.ico";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href={faviconImage.src} sizes="any" />
+      </Head>
       <body className={`dark ${inter.className}`}>
         <Header />
         {children}
