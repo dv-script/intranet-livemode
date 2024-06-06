@@ -41,7 +41,13 @@ export async function Header() {
   return (
     <div className="mx-auto flex items-center gap-2 justify-between p-2 max-w-screen-xl">
       <Link href="/" className="relative h-16 w-16">
-        <Image src={LogoImage.src} alt="CazeTV Logo" fill sizes="100%" />
+        <Image
+          src={LogoImage.src}
+          alt="Livemode Logo"
+          fill
+          sizes="100%"
+          className="object-contain"
+        />
       </Link>
       <Sheet>
         <SheetTrigger asChild>
