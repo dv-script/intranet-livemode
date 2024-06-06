@@ -4,7 +4,7 @@ import { toggleFavoriteIntranet } from "@/app/_actions/toggle-favorite-intranet"
 import { Button } from "@/app/_components/ui/button";
 import { Intranet, Prisma } from "@prisma/client";
 import { HeartIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export function FavoriteIntranet({
@@ -16,11 +16,15 @@ export function FavoriteIntranet({
     include: { intranet: true };
   }>[];
 }) {
-  const isFavorite = intranetsFavorited.some(
-    (fav) => fav.intranetId === intranet.id
-  );
-  const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
+  const [isFavoriteState, setIsFavoriteState] = useState(false);
   const [pending, setPending] = useState(false);
+
+  useEffect(() => {
+    const isFavorite = intranetsFavorited.some(
+      (fav) => fav.intranetId === intranet.id
+    );
+    setIsFavoriteState(isFavorite);
+  }, [intranetsFavorited, intranet.id]);
 
   const handleFavoriteClick = async () => {
     setIsFavoriteState((prev) => !prev);
@@ -28,7 +32,7 @@ export function FavoriteIntranet({
     try {
       await toggleFavoriteIntranet(intranet.id);
       toast.success(
-        isFavorite
+        !isFavoriteState
           ? `${intranet.name} foi removido dos favoritos.`
           : `${intranet.name} foi favoritado.`
       );
