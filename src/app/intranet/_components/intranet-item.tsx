@@ -64,7 +64,11 @@ export function IntranetItem({
           />
         )}
       </div>
-      <Badge className="w-fit">{intranet.category.name}</Badge>
+      <Badge className="w-fit">
+        <Link href={`/category/${intranet.category.id}`}>
+          {intranet.category.name}
+        </Link>
+      </Badge>
 
       {isAdmin && (
         <div className="flex justify-end">
